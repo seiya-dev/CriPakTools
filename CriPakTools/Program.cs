@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,6 @@ namespace CriPakTools
         static void Main(string[] args)
         {
             Console.WriteLine("CriPakTools\n");
-            Console.WriteLine("Based off Falo's code relased on Xentax forums (see readme.txt), modded by Nanashi3 from FuwaNovels.\nInsertion code by EsperKnight\n\n");
 
             if (args.Length == 0)
             {
@@ -69,8 +68,9 @@ namespace CriPakTools
                         chunk = cpk.DecompressCRILAYLA(chunk, size);
                     }
 
-                    Console.WriteLine("Extracting: " + ((entries[i].DirName != null) ? entries[i].DirName + "/" : "") + entries[i].FileName.ToString());
-                    File.WriteAllBytes(((entries[i].DirName != null) ? entries[i].DirName + "/" : "") + entries[i].FileName.ToString(), chunk);
+                    string outName = (((entries[i].DirName != null) ? entries[i].DirName + "/" : "") + entries[i].FileName.ToString()).TrimStart('/');
+                    Console.WriteLine("Extracting: " + outName);
+                    File.WriteAllBytes(outName, chunk);
                 }
             }
             else
